@@ -10,26 +10,26 @@
 {% endblock %}
 
 {% block body %}
-        <div class='text-center'>
-    <div class='h2 mb-3 font-weight-bold'>
-        Gestion de la demande d'intervention n°{{ intervention.id }}
-    </div>
-    
-    <div class="d-inline-flex justify-content-center align-items-center">
+	<div class='text-center'>
+		<div class='h2 mb-3 font-weight-bold'>
+			Gestion de la demande d'intervention n°{{ intervention.id }}
+		</div>
 
-        <a class="grey-btn f-20 px-4 py-2 mx-2" href="{{ path('intervention_edit', {'id': intervention.id}) }}">
-            Modifier
-        </a>
-        {{ include('intervention/_delete_form.html.twig') }}
-        <form action="" method="post" class="d-inline">
-            <button type="submit" name="download" value="request" class="grey-btn f-20 px-4 py-2 mx-2">
-                Télécharger et Imprimer
-            </button>
-        </form>
-    </div>
-</div>
+		<div class="d-inline-flex justify-content-center align-items-center">
 
-        <hr>
+			<a class="grey-btn f-20 px-4 py-2 mx-2" href="{{ path('intervention_edit', {'id': intervention.id}) }}">
+				Modifier
+			</a>
+			{{ include('intervention/_delete_form.html.twig') }}
+			<form action="" method="post" class="d-inline">
+				<button type="submit" name="download" value="request" class="grey-btn f-20 px-4 py-2 mx-2">
+					Télécharger et Imprimer
+				</button>
+			</form>
+		</div>
+	</div>
+
+	<hr>
 
 
 	<div class="container show-container">

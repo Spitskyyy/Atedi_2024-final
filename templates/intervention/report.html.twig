@@ -47,6 +47,12 @@
                     {% endfor %}
                 </div>
             </div>
+
+
+
+
+
+
         {% elseif step == 2 %}
             <div class="row justify-content-around mb-3 report-container">
                 <div class='col-12 justify-content-center row step-title p-2 mb-3'>
@@ -74,10 +80,20 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+            
         {% elseif step == 3 %}
             <div class="row justify-content-around mb-3 report-container">
                 <div class='col-12 justify-content-center row step-title p-2 mb-3'>
-                    <a href="{{ path('action_new', {'s': 'report', 'id': intervention.id}) }}" class='my-auto'><i data-toggle="tooltip" title="Ajouter une action" class="float-left fas add-btn fa-plus-circle fa-lg mr-2"></i></a><div class='f-20'>Action(s) effectuée(s) lors de l'intervention</div>
+                    <a href="{{ path('action_new', {'s': 'report', 'id': intervention.id}) }}" class='my-autoi data-toggle="tooltip" title="Ajouter une action" class="float-left fas add-btn fa-plus-circle fa-lg mr-2"></i></a><div class='f-20'>Action(s) effectuée(s) lors de l'intervention</div>
                 </div>
                 <input class='w-100 mb-3 p-2' type="text" id="searchBar" placeholder="Rechercher une action">
 
@@ -87,7 +103,7 @@
                             <div class='col-md-auto my-auto'><input type="checkbox" name="actions[]" value="{{ action.id }}"></div>
                             <div class='col'><div class='f-20 w-100'>{{ action.title }}</div></div>
                         </div>
-                    {% endfor %}
+                    {% endfor %}'><
                 </div>
             </div>
         {% elseif step == 4 %}
