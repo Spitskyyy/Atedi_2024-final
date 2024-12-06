@@ -97,7 +97,7 @@
                 <table width="100%" class='w-100'>
                     <tbody class="w-100" align="right">
                         <tr class="w-100 border-on">
-                            <td width="50%" class='border-on text-center w-100'>Tâche(s)</td>
+                            <td width="30%" class='border-on text-center w-100'>Tâche(s)</td>
                             <td align="left" class='border-on font-b font-20 px-1'>{% for task in intervention.tasks %}{{ task }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
                         </tr>
                         <tr>
@@ -117,119 +117,83 @@
                             <td align="left" class='border-on px-1'>{% if not intervention.props is empty %}{% for prop in intervention.props %} {{ prop }}{% if not loop.last %}, {% endif %}{% endfor %}{% else %}Aucun/Non spécifié{% endif %}</td>
                         </tr>
                         <tr>
-                            <td class='border-on text-center'>Signature du client avec date et mention "bon pour accord travaux" </td>
-                            <td align="left" class='border-on px-1' valign="top" >SIGNATURE:</td>
+                            <td class='border-on text-center'>Signature du client </td>
+                            <td align="left" class='border-on px-1' valign="top" ></td>
                         </tr>
                     </tbody>
                 </table>
             </div><br><br><br>
 
-            <div class='p-1 header'>
-                <div align="center" class='text-center font-weight-bold' style="font-size: 25px;">TRAITEMENT DE L'INTERVENTION N°{{ intervention.id }}</div>
-            </div>
-
-            <div class='p-2 mt-5'>
-                <div class='header'>
-                    <div align="center" class='text-center font-weight-bold' style="font-size: 18px;">Sévérité de l'infection</div>
-                </div>
-                <table class='w-100'>
-                    <tbody>
-                        <tr>
-                            <td align="center" class='py-1 border-on text-center' colspan="2">                                            
-                            [{{ "Matériel non infecté" in intervention.interventionReport.severity ? "X" : "_" }}]Matériel non infecté
-                            [{{ "Matériel légèrement infecté" in intervention.interventionReport.severity ? "X" : "_" }}]Matériel légèrement infecté
-                            [{{ "Matériel dangereusement infecté" in intervention.interventionReport.severity ? "X" : "_" }}]Matériel dangereusement infecté
-                            </td>
-                        </tr>
-                        {% if(intervention.interventionReport.severity != "Matériel non infecté") %}
-                        <tr>
-                            <td width="50%" align="right" class='py-1 border-on px-2'>Type d'infection du matériel</td>
-                            <td align="center" class='py-1 border-on px-2'>[{{ "Virus" in intervention.interventionReport.severityProblem ? "X" : "_" }}]Virus</td>
-                        </tr>
-                        {% endif %}
-                        <tr>
-                            <td align="right" class='py-1 border-on px-2'>Logiciel de nettoyage utilisé(s)</td>
-                            <td class='py-1 border-on px-2'>
-                                {% for software in cleaningSoftwares %}
-                                    <div class='checkbox-item'>[_]{{ software }} {% if not loop.last %}.....{% endif %}</div>
-                                {% endfor %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='mb-5 border-on px-2' colspan="2"><span class='font-weight-bold'>Analyse interne :</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class='p-2 mt-3'>
-                <div class='header'>
-                    <div align="center" class='text-center font-weight-bold' style="font-size: 18px;">Action(s) effectuée(s)</div>
-                </div>
-                <table width="100%" class='w-100'>
-                    <tbody>
-                        <tr>
-                            <td class='large-mb border-on px-2'><span class='font-weight-bold'>Logiciel(s) installé(s) ou mis à jour :</span></td>
-                        </tr>
-                        <tr>
-                            <td align="center" class='py-1 border-on px-2 text-center' width="100%">
-                                {% for action in actions %}
-                                    <div class='checkbox-item'>[_]{{ action }} {% if not loop.last %}.....{% endif %}</div>
-                                {% endfor %}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class='p-2 mt-3'>
-                <div class='header'>
-                    <div align="center" class='text-center font-weight-bold' style="font-size: 18px;">Info CrystalDisk</div>
-                </div>
-                <table width="100%" class='w-100'>
-                    <tbody>
-                        <tr>
-                            <td align="left" class='py-1 border-on px-2 text-center' width="100%"> Etat du Disk :                       
-                                <div align="center" class='checkbox-item'>[{{ "Correct" in intervention.interventionReport.diskState ? "X" : "_" }}]Correct</div> 
-                                <div align="center" class='checkbox-item'>[{{ "Prudence" in intervention.interventionReport.diskState ? "X" : "_" }}]Prudence</div> 
-                                <div align="center" class='checkbox-item'>[{{ "Mauvais" in intervention.interventionReport.diskState ? "X" : "_" }}]Mauvais</div> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='large-mb border-on px-2'><span class='font-weight-bold'>Temps de fonctionnement : {% if intervention.interventionReport.uptime is not null %}{{ intervention.interventionReport.uptime}}H{% else %}Non indiqué {% endif %}</span></td>
-                        </tr>
-                        <tr>
-                            <td class='large-mb border-on px-2'><span class='font-weight-bold'>Taux d'usure de la batterie : {% if intervention.interventionReport.batteryDegradation is not null %}{{ intervention.interventionReport.batteryDegradation}}%{% else %}Non indiqué {% endif %}</span></td>
-                        </tr>                        
-                    </tbody>
-                </table>
-            </div>
+         <div class="form-container" style="width: 100%; max-width: 800px; margin: auto; font-family: Arial, sans-serif; font-size: 14px;">
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
+    
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="width: 50%; border: 1px solid #000; padding: 8px; text-align: center;">Résultats</th>
+                <th style="width: 50%; border: 1px solid #000; padding: 8px; text-align: center;">Informations complémentaires</th>
+            </tr>
+        </thead>
+     
+        <tbody>
+       
+            <tr>
+                <td style="border: 1px solid #000; padding: 8px;">ADWC</td>
+                <td style="border: 1px solid #000; padding: 8px;">
+                    <label style="margin-right: 10px;"><input type="checkbox"> ADWC</label>
+                    <label style="margin-right: 10px;"><input type="checkbox"> ZHP</label>
+                    <label style="margin-right: 10px;"><input type="checkbox"> MB</label>
+                    <label style="margin-right: 10px;"><input type="checkbox"> SAS</label>
+                </td>
+            </tr>
+   
+            <tr>
+                <td style="border: 1px solid #000; padding: 8px;">ZHP</td>
+                <td style="border: 1px solid #000; padding: 8px;">
+                    <label><input type="checkbox"> Optimisation démarrage</label>
+                </td>
+            </tr>
             
-            {% if isWindows(intervention.operatingSystem) %}
-                <div class='p-2'>
-                    <div class='header'>
-                        <div class='text-center font-weight-bold'>Sous-partie Windows</div>
-                    </div>
-                    <table width="100%" class='w-100'>
-                        <tbody>
-                            <tr>
-                                <td width="100%" align="center" class='py-1 border-on px-2 text-center' colspan='2'>
-                                        <div class='w-100 list-ele pl-2'>
-                                            [{{ "Installation de(s) mise(s) à jour Windows" in intervention.interventionReport.windowsInstall ? "X" : "_" }}]Installation des mises à jour Windows .....
-                                            [{{ "Activation Windows" in intervention.interventionReport.windowsInstall ? "X" : "_" }}]Activation Windows
-                                        </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            {% endif %}
+            <tr>
+                <td style="border: 1px solid #000; padding: 8px;">MB</td>
+                <td style="border: 1px solid #000; padding: 8px;">
+                    <label><input type="checkbox"> RAZ navigateurs</label>
+                </td>
+            </tr>
+       
+            <tr>
+                <td style="border: 1px solid #000; padding: 8px;">SAS</td>
+                <td style="border: 1px solid #000; padding: 8px;">
+                    <label style="display: block; margin-bottom: 5px;"><input type="checkbox"> Version Windows :</label>
+                    <input type="text" style="width: calc(100% - 20px); padding: 5px; border: 1px solid #000;">
+                </td>
+            </tr>
+            
+            <tr>
+                <td colspan="2" style="border: 1px solid #000; padding: 8px;">
+                    <label style="margin-right: 10px;"><input type="checkbox"> Suppression de l'antivirus client</label>
+                    <label style="margin-right: 10px;"><input type="checkbox"> Install Antivirus</label>
+                    <label style="margin-right: 10px;"><input type="checkbox"> MàJ Antivirus</label>
+                    <label style="margin-right: 10px;"><input type="checkbox"> Install SAS</label>
+                    <label style="margin-right: 10px;"><input type="checkbox"> MàJ SAS</label>
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="border: 1px solid #000; padding: 8px;">Rapport CRYSTALDISK :</td>
+                <td style="border: 1px solid #000; padding: 8px;">
+                    <label style="margin-right: 10px;"><input type="radio" name="crystaldisk"> Correct</label>
+                    <label style="margin-right: 10px;"><input type="radio" name="crystaldisk"> Prudence !</label>
+                    <label style="margin-right: 10px;"><input type="radio" name="crystaldisk"> Mauvais !</label>
+                </td>
+            </tr>
+      
+            <tr>
+                <td style="border: 1px solid #000; padding: 8px;">Serveur de sauvegarde :</td>
+                <td style="border: 1px solid #000; padding: 8px;">
+                    <input type="text" style="width: calc(100% - 20px); padding: 5px; border: 1px solid #000;">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-            <div class='p-2 mt-3 '>
-                <div class='header'>
-                    <div align="center" class='text-center font-weight-bold' style="font-size: 18px;">Observations</div>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
